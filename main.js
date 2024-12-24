@@ -1,6 +1,22 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var stringUtils_1 = require("./stringUtils");
+var finance_1 = require("./finance");
+var userManagement_1 = require("./userManagement");
+var sequenceUtils_1 = require("./sequenceUtils");
 var text = "hello world";
 console.log((0, stringUtils_1.capitalize)(text));
 console.log((0, stringUtils_1.reverseString)(text));
+var loanCalculator = new finance_1.Finance.LoanCalculator(20000, 5, 5);
+console.log("Monthly Payment: ".concat(loanCalculator.calculateMonthlyPayment().toFixed(2)));
+var taxCalculator = new finance_1.Finance.TaxCalculator(50000, 20);
+console.log("Tax Amount: ".concat(taxCalculator.calculateTax()));
+var adminUser = new userManagement_1.UserManagement.Admin.AdminUser("Alice", "alice@example.com", true);
+console.log("Admin: ".concat(adminUser.name, ", Super Admin: ").concat(adminUser.isSuperAdmin));
+adminUser.changeAccess(false);
+console.log("Admin: ".concat(adminUser.name, ", Super Admin: ").concat(adminUser.isSuperAdmin));
+var fibonacciSequence = (0, sequenceUtils_1.generateFibonacci)(100);
+console.log("Fibonacci Sequence:", fibonacciSequence);
+// Тестирование функции для генерации простых чисел
+var primeNumbers = (0, sequenceUtils_1.generatePrimeNumbers)(50);
+console.log("Prime Numbers:", primeNumbers);
