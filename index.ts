@@ -156,3 +156,27 @@ const checkingAccount = new CheckingAccount();
 checkingAccount.deposit(100);
 checkingAccount.withdraw(50);
 checkingAccount.withdraw(60); // Проверка недостатка средств
+
+// Task 5
+
+abstract class Media {
+  abstract play(): void;
+}
+
+class AudioPlayer extends Media {
+  play(): void {
+    console.log("Playing audio");
+  }
+}
+
+class Video extends Media {
+  play(): void {
+    console.log("Playing video");
+  }
+}
+
+const mediaItems: Media[] = [new AudioPlayer(), new Video()];
+
+mediaItems.forEach((item) => {
+  item.play();
+});
