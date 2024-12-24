@@ -103,3 +103,56 @@ appliances.forEach((appliance) => {
   appliance.turnOn();
   appliance.turnOff();
 });
+
+// Task 4
+
+abstract class Account {
+  abstract deposit(amount: number): void;
+  abstract withdraw(amount: number): void;
+}
+
+class SavingsAccount extends Account {
+  private balance: number = 0;
+
+  deposit(amount: number): void {
+    this.balance += amount;
+    console.log(`Deposited ${amount}. New balance is ${this.balance}`);
+  }
+
+  withdraw(amount: number): void {
+    if (this.balance >= amount) {
+      this.balance -= amount;
+      console.log(`Withdraw ${amount}. New balance is ${this.balance}`);
+    } else {
+      console.log("Insufficient funds");
+    }
+  }
+}
+
+class CheckingAccount extends Account {
+  private balance: number = 0;
+  private fee = 1.5;
+
+  deposit(amount: number): void {
+    this.balance += amount;
+    console.log(`Deposited ${amount}. New balance is ${this.balance}`);
+  }
+
+  withdraw(amount: number): void {
+    if (this.balance >= amount + this.fee) {
+      this.balance -= amount + this.fee;
+      console.log(`Withdraw ${amount}. New balance is ${this.balance}`);
+    } else {
+      console.log("Insufficient funds, including fee");
+    }
+  }
+}
+
+const savingsAccount = new SavingsAccount();
+savingsAccount.deposit(100);
+savingsAccount.withdraw(50);
+
+const checkingAccount = new CheckingAccount();
+checkingAccount.deposit(100);
+checkingAccount.withdraw(50);
+checkingAccount.withdraw(60); // Проверка недостатка средств
